@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,12 +64,7 @@ public class MonsterTest {
         kobold4 = new Kobold(15,15, items);
 
         //setters test
-        Integer hp = 5;
         items2 = new HashMap<>();
-        String silver = "Silver";
-        Integer four = 4;
-        String arrow = "Arrow";
-        Integer three = 3;
     }
     @AfterEach
     void tearDown() {
@@ -132,5 +128,39 @@ public class MonsterTest {
     void getItemsKob() {
         assertEquals(items1, kobold2.getItems());              //field setting and getter test
         assertNotEquals(kobold2.getItems(), kobold3.getItems());  //equality test
+    }
+
+    @Test
+    void setHpImp() {
+        hp = 12;
+        imp1.setHp(hp);
+        assertNotEquals(10, imp1.getHp());
+        assertEquals(hp, imp1.getHp());
+    }
+
+    @Test
+    void setItemsImp() {
+        items2.put(silver, four);
+        items2.put(arrow, three);
+        imp1.setItems(items2);
+        assertNotEquals(items, imp1.getItems());
+        assertEquals(items2, imp1.getItems());
+    }
+
+    @Test
+    void setHpKob() {
+        hp = 12;
+        kobold1.setHp(hp);
+        assertNotEquals(10, kobold1.getHp());
+        assertEquals(hp, kobold1.getHp());
+    }
+
+    @Test
+    void setItemsKob() {
+        items2.put(silver, four);
+        items2.put(arrow, three);
+        kobold1.setItems(items2);
+        assertNotEquals(items, kobold1.getItems());
+        assertEquals(items2, kobold1.getItems());
     }
 }
