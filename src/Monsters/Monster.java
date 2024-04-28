@@ -24,19 +24,26 @@ public abstract class Monster {
     }
 
     public Integer attackTarget(Monster target) {
-        return attack.attack(target);
+        int attackTotal = attack.attack(target);
+        target.takeDamage(attackTotal);
+        return attackTotal;
     }
 
     boolean takeDamage(Integer damage) {
         if (damage > 0) {
-            hp = hp - damage;
+            this.hp = (hp - damage);
             System.out.println("The creature was hit for " + damage + " damage");
+            System.out.println(this);
             if (hp <= 0) {
                 System.out.println("Oh no! the creature has perished");
                 System.out.println(this);
+                return(false);
+            } else {
+                return(true);
             }
+        } else {
+            return (hp > 0);
         }
-        return (hp > 0);
     }
 
     Integer getAttribute(Integer min, Integer max) {
